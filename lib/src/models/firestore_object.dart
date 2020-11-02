@@ -1,9 +1,10 @@
 import 'dart:async';
 
+import 'package:bdaya_firebase_helpers/src/models/json_based_object.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
-class FirestoreDocumentHelper {
+class FirestoreDocumentHelper implements JsonBasedObject {
   Map<String, dynamic> _data;
   Map<String, dynamic> get data => _data ??= {};
 
