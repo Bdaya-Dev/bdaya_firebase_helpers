@@ -4,7 +4,7 @@ class MapObject {
 
   final String field;
 
-  MapObject.fromMap(this.field, Map<String, dynamic> src) : _data = src;
+  MapObject.fromMap(this.field, Map<String, dynamic> src) : _data = src[field];
 }
 
 extension MapObjectExt on Map<String, dynamic> {
