@@ -34,12 +34,7 @@ class FirestoreDocumentHelper implements JsonBasedObject {
   })  : _exists = exists,
         _data = data;
 
-  @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is FirestoreDocumentHelper && o.path == path;
-  }
+  
 
   @override
   int get hashCode => path.hashCode;
