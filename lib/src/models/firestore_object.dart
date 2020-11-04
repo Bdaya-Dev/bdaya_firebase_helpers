@@ -37,9 +37,6 @@ class FirestoreDocumentHelper implements JsonBasedObject {
   
 
   @override
-  int get hashCode => path.hashCode;
-
-  @override
   String toString() =>
       'FirestoreDocumentHelper(_data: $_data, _reference: $_reference)';
 }
