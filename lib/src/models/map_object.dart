@@ -7,6 +7,7 @@ class MapObject implements JsonBasedObject {
   final String field;
 
   MapObject.fromMap(this.field, Map<String, dynamic> src) : _data = src[field];
+  MapObject.fromDataMap(this.field, Map<String, dynamic> src) : _data = src;
 }
 
 extension MapObjectExt on Map<String, dynamic> {
