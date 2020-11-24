@@ -11,7 +11,7 @@ class MapObject implements JsonBasedObject {
 }
 
 extension MapObjectExt on Map<String, dynamic> {
-  Map<String, dynamic> getMap(String key) {
+  Map<String, TVal> getMap<TVal>(String key) {
     return this[key];
   }
 
