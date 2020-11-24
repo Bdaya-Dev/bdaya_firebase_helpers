@@ -34,8 +34,6 @@ class FirestoreDocumentHelper implements JsonBasedObject {
   })  : _exists = exists,
         _data = data;
 
-  
-
   @override
   String toString() =>
       'FirestoreDocumentHelper(_data: $_data, _reference: $_reference)';
@@ -53,6 +51,19 @@ extension FirestoreObjectQueryExt on Stream<QuerySnapshot> {
     return this.map<Iterable<T>>(
         (querySnap) => querySnap.docs.map<T>((f) => createObject(f)).toList());
   }
+
+  Stream<Map<String, T>> toHelperMapPath<T extends FirestoreDocumentHelper>(
+          T Function(DocumentSnapshot) createObject) =>
+      this.map<Map<String, T>>(
+        (event) => Map.fromEntries(
+          event.docs.map(
+            (e) => MapEntry(
+              e.reference.path,
+              createObject(e),
+            ),
+          ),
+        ),
+      );
 
   Stream<Map<String, T>> toHelperMap<T extends FirestoreDocumentHelper>(
           T Function(DocumentSnapshot) createObject) =>
