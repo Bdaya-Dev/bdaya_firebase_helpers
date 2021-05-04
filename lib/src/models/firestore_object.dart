@@ -8,10 +8,7 @@ abstract class FirestoreDocumentBase {
     required this.id,
   });
 
-  void fromJson({
-    required String path,
-    required Map<String, dynamic> data,
-  });
+  void fromJson(Map<String, dynamic> data);
   Map<String, dynamic> toJson();
 
   @override
