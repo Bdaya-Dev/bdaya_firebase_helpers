@@ -1,9 +1,8 @@
 import 'dart:async';
 
-import 'package:bdaya_firebase_helpers/src/models/json_based_object.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'firestore_ref_wrapper.dart';
+import 'package:bdaya_firebase_helpers/src/models/json_based_object.dart';
 
 /// A base class for all firestore objects (for nested map objects, use [MapObject])
 class FirestoreDocumentBase implements JsonBasedObject {
@@ -41,4 +40,14 @@ class FirestoreDocumentBase implements JsonBasedObject {
   @override
   String toString() =>
       'FirestoreDocumentHelper(_data: $_data, _reference: $_reference)';
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is FirestoreDocumentBase &&
+        other.reference.path == other.reference.path;
+  }
+
+  @override
+  int get hashCode => reference.path.hashCode;
 }
