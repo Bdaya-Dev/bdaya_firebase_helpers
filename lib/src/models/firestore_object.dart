@@ -9,9 +9,11 @@ import 'firestore_ref_wrapper.dart';
 class FirestoreDocumentBase implements JsonBasedObject {
   Map<String, dynamic>? _data;
   Map<String, dynamic> get data => _data ??= {};
+  set data(Map<String, dynamic> map) {
+    _data = map;
+  }
 
-  bool _exists; // => snapshot.exists;
-  bool get exists => _exists;
+  bool exists;
 
   final String path; // => snapshot.reference.path;
   String get id => reference.id;
@@ -27,16 +29,14 @@ class FirestoreDocumentBase implements JsonBasedObject {
   FirestoreDocumentBase(DocumentSnapshot __snapshot)
       : _data = __snapshot.data(),
         path = __snapshot.reference.path,
-        _exists = __snapshot.exists;
+        exists = __snapshot.exists;
 
   FirestoreDocumentBase.fromMap(
     this.path, {
     bool exists = true,
     required Map<String, dynamic> data,
-  })  : _exists = exists,
+  })  : exists = exists,
         _data = data;
-
-  List<FirestoreRefWrapper> get toMergeOnListen => [];
 
   @override
   String toString() =>

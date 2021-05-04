@@ -10,7 +10,8 @@ extension FirestoreObjectQueryExt on Stream<QuerySnapshot> {
   }
 
   Stream<List<T>> toHelperList<T extends FirestoreDocumentBase>(
-      T Function(DocumentSnapshot) createObject) {
+    T Function(DocumentSnapshot) createObject,
+  ) {
     return this.map<List<T>>(
       (querySnap) => querySnap.docs.map<T>((f) => createObject(f)).toList(),
     );
