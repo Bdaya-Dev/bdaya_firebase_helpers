@@ -1,7 +1,5 @@
-import 'package:bdaya_firebase_helpers/src/models/json_based_object.dart';
-
 /// A base class for all firestore objects (for nested map objects, use [MapObject])
-abstract class FirestoreDocumentBase implements JsonBasedObject {
+abstract class FirestoreDocumentBase {
   final String path;
   final String id;
 
