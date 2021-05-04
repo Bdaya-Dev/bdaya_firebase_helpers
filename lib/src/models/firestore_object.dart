@@ -25,7 +25,7 @@ class FirestoreDocumentBase implements JsonBasedObject {
 
   Future<void> createOrUpdate() => reference.set(data, SetOptions(merge: true));
 
-  FirestoreDocumentBase(DocumentSnapshot __snapshot)
+  FirestoreDocumentBase(DocumentSnapshot<Map<String, dynamic>> __snapshot)
       : _data = __snapshot.data(),
         path = __snapshot.reference.path,
         exists = __snapshot.exists;

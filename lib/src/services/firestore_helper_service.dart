@@ -16,6 +16,34 @@ abstract class FirestoreHelperService {
     }
   }
 
+  List<T> syncCacheWithIterableDocs<T extends FirestoreDocumentBase>(
+    Iterable<DocumentChange> changes,
+    T create(DocumentSnapshot snap),
+  ) {
+    final res = <T>[];
+
+    for (var c in changes) {
+      switch (c.type) {
+        case DocumentChangeType.added:
+        case DocumentChangeType.modified:
+          //doesn't exist before
+          var prev = objectCache[c.doc.reference.path];
+          if (prev == null || !(prev is T)) {
+            objectCache[c.doc.reference.path] = prev = create(c.doc);
+          } else {
+            //prev.data = c.doc.data()!;
+          }
+          res.add(prev);
+          break;
+        case DocumentChangeType.removed:
+          objectCache.remove(c.doc.reference.path);
+          break;
+        default:
+      }
+    }
+    return res;
+  }
+
   void deleteFirestoreRef(String path) {
     objectCache.remove(path);
   }
