@@ -33,6 +33,11 @@ abstract class FirestoreDocumentBase {
   void fromJson(Map<String, dynamic> data);
   Map<String, dynamic> toJson();
 
+  Future<void> save() => reference.update(toJson());
+
+  Future<void> createOrUpdate() =>
+      reference.set(toJson(), SetOptions(merge: true));
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
