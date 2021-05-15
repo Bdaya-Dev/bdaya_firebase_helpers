@@ -38,12 +38,4 @@ abstract class FirestoreDocumentBase {
   Future<void> createOrUpdate() =>
       reference.set(toJson(), SetOptions(merge: true));
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is FirestoreDocumentBase && other.path == other.path;
-  }
-
-  @override
-  int get hashCode => path.hashCode;
 }
